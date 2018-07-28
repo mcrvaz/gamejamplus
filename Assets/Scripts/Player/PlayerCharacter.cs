@@ -8,17 +8,21 @@ public class PlayerCharacter : MonoBehaviour {
 	public float speed;
 	public GameObject startingRail;
 
+	private Animator anim;
 	private List<Rail> rails;
 	private Rail currentRail;
 	private int currentRailIndex;
 	private GameObject nextWaypoint;
 	private bool isChangingRail;
 
+
 	void Awake() {
 		var startingRail = this.startingRail.GetComponent<Rail>();
 		this.rails = new List<Rail>(GameObject.FindObjectsOfType<Rail>());
 		this.currentRailIndex = rails.FindIndex(e => startingRail);
 		this.currentRail = rails[currentRailIndex];
+		anim = GetComponent<Animator>();
+		anim.SetBool("isMoving", true);
 	}
 
 	void Start() {
@@ -52,10 +56,18 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void MoveToWaypoint() {
+		float speed = IsTouchingRail() ? this.speed : (this.speed * 2); // maintain horizontal speed when moving diagonally
 		transform.position = Vector2.MoveTowards(
 			transform.position,
 			nextWaypoint.transform.position,
 			Time.deltaTime * speed
+		);
+	}
+
+	bool IsTouchingRail() {
+		return Mathf.Approximately(
+			Mathf.Abs(transform.position.y),
+			Mathf.Abs(nextWaypoint.transform.position.y)
 		);
 	}
 
