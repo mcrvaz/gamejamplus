@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114700240523889926}
   m_Layer: 0
   m_Name: MovingEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,8 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  initialWaypoint: {fileID: 0}
-  finalWaypoint: {fileID: 0}
+  waypoints: []
 --- !u!212 &212241610817971978
 SpriteRenderer:
   m_ObjectHideFlags: 1

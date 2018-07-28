@@ -10,11 +10,20 @@ public class PlayerAnimatorController : MonoBehaviour {
 	void Awake() {
 		animator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		Move();
+	}
+
+	public void Stop() {
+		animator.SetBool("isMoving", false);
+	}
+
+	public void Move() {
 		animator.SetBool("isMoving", true);
 	}
 
 	public void Jump() {
 		animator.SetTrigger("Jump");
+		FlipSprite();
 	}
 
 	public void SetJumping(bool isJumping) {

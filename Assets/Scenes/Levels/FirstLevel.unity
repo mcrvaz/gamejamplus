@@ -266,6 +266,46 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4800105797092238, guid: cfecf33745df74e21b77913852b19438,
     type: 2}
   m_PrefabInternal: {fileID: 331770024}
+--- !u!1 &356619195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 356619197}
+  - component: {fileID: 356619196}
+  m_Layer: 0
+  m_Name: MatchManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &356619196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356619195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eb555fb85f384e43bc387fbd4e1eecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &356619197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356619195}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &389031746
 Prefab:
   m_ObjectHideFlags: 0
@@ -4161,6 +4201,11 @@ Prefab:
       propertyPath: isCircular
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114098007909347020, guid: feb69d24b03964332b3f64c904a79737,
+        type: 2}
+      propertyPath: isLastEndpoint
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feb69d24b03964332b3f64c904a79737, type: 2}
   m_IsPrefabAsset: 0
@@ -4594,6 +4639,11 @@ Prefab:
         type: 2}
       propertyPath: isCircular
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114675222001227616, guid: c87a52eb08ea5427f87d40b399a2a635,
+        type: 2}
+      propertyPath: isLastEndpoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c87a52eb08ea5427f87d40b399a2a635, type: 2}

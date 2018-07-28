@@ -8,19 +8,22 @@ public class PlayerCharacter : MonoBehaviour {
 	public float speed;
 	public GameObject startingRail;
 
+	private MatchManager matchManager;
+	private PlayerAnimatorController animController;
+
 	private List<Rail> rails;
 	private Rail currentRail;
 	private int currentRailIndex;
-	private GameObject nextWaypoint;
+	private Waypoint nextWaypoint;
 	private bool isChangingRail;
-	private PlayerAnimatorController animController;
 
 	void Awake() {
 		var startingRail = this.startingRail.GetComponent<Rail>();
-		this.rails = new List<Rail>(GameObject.FindObjectsOfType<Rail>());
+		this.rails = new List<Rail>(FindObjectsOfType<Rail>());
 		// this.currentRailIndex = rails.FindIndex(e => startingRail);
 		this.currentRailIndex = 1;
 		this.currentRail = rails[currentRailIndex];
+		this.matchManager = FindObjectOfType<MatchManager>();
 		this.animController = GetComponent<PlayerAnimatorController>();
 	}
 
@@ -29,14 +32,15 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
-			ChangeRail();
+		if (InputManager.isClicking() || InputManager.isTouching()) ChangeRail();
 		Move();
 	}
 
 	void Move() {
-		if (transform.position == nextWaypoint.transform.position)
+		if (transform.position == nextWaypoint.transform.position) {
+			if (nextWaypoint.isLastEndpoint) EndMatch();
 			NextWaypoint();
+		}
 		MoveToWaypoint();
 	}
 
@@ -49,13 +53,10 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void NextWaypoint(bool changingRail = false) {
-		if (changingRail)
-		{
+		if (changingRail) {
 			nextWaypoint = currentRail.GetNearestWaypoint(transform.position);
 			nextWaypoint = currentRail.GetNextWaypoint();
-		}
-		else
-		{
+		} else {
 			nextWaypoint = currentRail.GetNextWaypoint();
 		}
 	}
@@ -76,6 +77,15 @@ public class PlayerCharacter : MonoBehaviour {
 		);
 		animController.SetJumping(!isTouching);
 		return isTouching;
+	}
+
+	void OnTriggerEnter2D(Collider2D collider) {
+		if (collider.CompareTag(Tags.ENEMY)) matchManager.ScorePoint();
+	}
+
+	void EndMatch() {
+		matchManager.EndMatch();
+		animController.Stop();
 	}
 
 }
