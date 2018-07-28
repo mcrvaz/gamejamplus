@@ -20,7 +20,8 @@ public class MovingEnemy : Enemy {
 	}
 
 	void Update () {
-		if (ReachedDestination()) ChangeDestination();
+		if (ReachedDestination())
+			ChangeDestination();
 		Move();
 	}
 
@@ -29,7 +30,8 @@ public class MovingEnemy : Enemy {
 	}
 
 	void ChangeDestination() {
-		if (!waypointEnumerator.MoveNext()) ResetEnumerator(waypointEnumerator);
+		if (!waypointEnumerator.MoveNext())
+			ResetEnumerator(waypointEnumerator);
 		destination = waypointEnumerator.Current;
 	}
 

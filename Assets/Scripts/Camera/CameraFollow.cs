@@ -8,15 +8,18 @@ public class CameraFollow : MonoBehaviour {
 	public float followSpeed;
 
 	void Update () {
-		var newPosition = new Vector3(
-			toFollow.transform.position.x,
-			transform.position.y,
-			transform.position.z
-		);
-		transform.position = Vector3.Slerp(
-			transform.position,
-			newPosition,
-			followSpeed * Time.deltaTime
-		);
+		if (toFollow != null)
+		{
+			var newPosition = new Vector3(
+				toFollow.transform.position.x,
+				transform.position.y,
+				transform.position.z
+			);
+			transform.position = Vector3.Slerp(
+				transform.position,
+				newPosition,
+				followSpeed * Time.deltaTime
+			);
+		}
 	}
 }

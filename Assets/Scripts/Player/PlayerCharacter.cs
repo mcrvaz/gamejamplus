@@ -29,12 +29,14 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetButtonDown("Fire1") || Input.touchCount > 0) ChangeRail();
+		if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+			ChangeRail();
 		Move();
 	}
 
 	void Move() {
-		if (transform.position == nextWaypoint.transform.position) NextWaypoint();
+		if (transform.position == nextWaypoint.transform.position)
+			NextWaypoint();
 		MoveToWaypoint();
 	}
 
@@ -47,10 +49,13 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void NextWaypoint(bool changingRail = false) {
-		if (changingRail) {
+		if (changingRail)
+		{
 			nextWaypoint = currentRail.GetNearestWaypoint(transform.position);
 			nextWaypoint = currentRail.GetNextWaypoint();
-		} else {
+		}
+		else
+		{
 			nextWaypoint = currentRail.GetNextWaypoint();
 		}
 	}
