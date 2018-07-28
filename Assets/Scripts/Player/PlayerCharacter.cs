@@ -52,6 +52,7 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void MoveToWaypoint() {
+		float speed = IsTouchingRail() ? this.speed : (this.speed * 2); // maintain horizontal speed when moving diagonally
 		transform.position = Vector2.MoveTowards(
 			transform.position,
 			nextWaypoint.transform.position,
@@ -59,9 +60,11 @@ public class PlayerCharacter : MonoBehaviour {
 		);
 	}
 
-	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.gameObject.layer != 8)
-			Destroy(collider.gameObject);
+	bool IsTouchingRail() {
+		return Mathf.Approximately(
+			Mathf.Abs(transform.position.y),
+			Mathf.Abs(nextWaypoint.transform.position.y)
+		);
 	}
 
 }
