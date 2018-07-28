@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour {
 
+	[Range(0, 20)]
 	public float speed;
 	public GameObject startingRail;
 
@@ -14,8 +15,8 @@ public class PlayerCharacter : MonoBehaviour {
 	private bool isChangingRail;
 
 	void Awake() {
-		this.rails = new List<Rail>(GameObject.FindObjectsOfType<Rail>());
 		var startingRail = this.startingRail.GetComponent<Rail>();
+		this.rails = new List<Rail>(GameObject.FindObjectsOfType<Rail>());
 		this.currentRailIndex = rails.FindIndex(e => startingRail);
 		this.currentRail = rails[currentRailIndex];
 	}
@@ -34,6 +35,13 @@ public class PlayerCharacter : MonoBehaviour {
 		MoveToWaypoint();
 	}
 
+	void ChangeRail() {
+		int idx = currentRailIndex == 0 ? 1 : 0;
+		currentRail = rails[idx];
+		currentRailIndex = idx;
+		NextWaypoint(true);
+	}
+
 	void NextWaypoint(bool changingRail = false) {
 		if (changingRail) {
 			nextWaypoint = currentRail.GetNearestWaypoint(transform.position);
@@ -49,13 +57,6 @@ public class PlayerCharacter : MonoBehaviour {
 			nextWaypoint.transform.position,
 			Time.deltaTime * speed
 		);
-	}
-
-	void ChangeRail() {
-		int idx = currentRailIndex == 0 ? 1 : 0;
-		currentRail = rails[idx];
-		currentRailIndex = idx;
-		NextWaypoint(true);
 	}
 
 }
