@@ -72,7 +72,8 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		Destroy(collider.gameObject);
+		if (collider.gameObject.layer != 8)
+			Destroy(collider.gameObject);
 	}
 
 }
