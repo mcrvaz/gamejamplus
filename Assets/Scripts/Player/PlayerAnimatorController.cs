@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class PlayerAnimatorController : MonoBehaviour {
 
-	private Animator anim;
+	private Animator animator;
 	private SpriteRenderer spriteRenderer;
 
 	void Awake() {
-		anim = GetComponent<Animator>();
+		animator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		anim.SetBool("isMoving", true);
+		animator.SetBool("isMoving", true);
 	}
 
 	public void Jump() {
-		FlipSprite();
-		anim.SetTrigger("Jump");
+		animator.SetTrigger("Jump");
+	}
+
+	public void SetJumping(bool isJumping) {
+		animator.SetBool("isJumping", isJumping);
 	}
 
 	void FlipSprite() {

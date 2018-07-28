@@ -74,6 +74,7 @@ public class PlayerCharacter : MonoBehaviour {
 			Mathf.Abs(transform.position.y),
 			Mathf.Abs(nextWaypoint.transform.position.y)
 		);
+		animController.SetJumping(!isTouching);
 		return isTouching;
 	}
 
