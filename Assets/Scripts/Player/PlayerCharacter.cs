@@ -13,12 +13,15 @@ public class PlayerCharacter : MonoBehaviour {
 	private int currentRailIndex;
 	private GameObject nextWaypoint;
 	private bool isChangingRail;
+	private PlayerAnimatorController animController;
 
 	void Awake() {
 		var startingRail = this.startingRail.GetComponent<Rail>();
 		this.rails = new List<Rail>(GameObject.FindObjectsOfType<Rail>());
-		this.currentRailIndex = rails.FindIndex(e => startingRail);
+		// this.currentRailIndex = rails.FindIndex(e => startingRail);
+		this.currentRailIndex = 1;
 		this.currentRail = rails[currentRailIndex];
+		this.animController = GetComponent<PlayerAnimatorController>();
 	}
 
 	void Start() {
@@ -40,6 +43,7 @@ public class PlayerCharacter : MonoBehaviour {
 		currentRail = rails[idx];
 		currentRailIndex = idx;
 		NextWaypoint(true);
+		animController.Jump();
 	}
 
 	void NextWaypoint(bool changingRail = false) {
@@ -61,10 +65,11 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	bool IsTouchingRail() {
-		return Mathf.Approximately(
+		bool isTouching = Mathf.Approximately(
 			Mathf.Abs(transform.position.y),
 			Mathf.Abs(nextWaypoint.transform.position.y)
 		);
+		return isTouching;
 	}
 
 }
