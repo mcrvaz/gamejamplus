@@ -5,21 +5,31 @@ using UnityEngine;
 public class Rail : MonoBehaviour {
 
 	private List<GameObject> waypoints;
-	private IEnumerator<GameObject> waypointEnum;
+	private int waypointIndex = 0;
 
 	void Awake() {
-		var waypointsTransform = new List<Transform>(GetComponentsInChildren<Transform>());
-		this.waypoints = new List<GameObject>();
-		waypointsTransform.ForEach(e => waypoints.Add(e.gameObject));
-	}
-
-	void Start () {
-		waypointEnum = waypoints.GetEnumerator();
-		waypointEnum.MoveNext();
+		var waypointsObj = new List<Waypoint>(GetComponentsInChildren<Waypoint>());
+		waypoints = new List<GameObject>();
+		waypointsObj.ForEach(e => waypoints.Add(e.gameObject));
 	}
 
 	public GameObject GetNextWaypoint() {
-		waypointEnum.MoveNext();
-		return waypointEnum.Current;
+		if (waypointIndex < waypoints.Count - 1) waypointIndex++;
+		return waypoints[waypointIndex];
+	}
+
+	public GameObject GetNearestWaypoint(Vector3 position) {
+		waypointIndex = 0;
+		GameObject nearest = waypoints[waypointIndex];
+		float nearestDistance = Vector2.Distance(nearest.transform.position, position);
+		for (int i = 1; i < waypoints.Count; i++) {
+			float itemDistance = Vector2.Distance(waypoints[i].transform.position, position);
+			if (itemDistance < nearestDistance) {
+				waypointIndex = i;
+				nearest = waypoints[waypointIndex];
+				nearestDistance = Vector2.Distance(nearest.transform.position, position);
+			}
+		}
+		return nearest;
 	}
 }
