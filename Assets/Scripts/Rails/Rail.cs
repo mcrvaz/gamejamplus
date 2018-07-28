@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Rail : MonoBehaviour {
 
+	public bool isCircular;
+
 	private List<GameObject> waypoints;
 	private int waypointIndex = 0;
 
@@ -14,7 +16,11 @@ public class Rail : MonoBehaviour {
 	}
 
 	public GameObject GetNextWaypoint() {
-		if (waypointIndex < waypoints.Count - 1) waypointIndex++;
+		if (waypointIndex < waypoints.Count - 1) {
+			waypointIndex++;
+		} else if (isCircular){
+			waypointIndex = 0;
+		}
 		return waypoints[waypointIndex];
 	}
 
