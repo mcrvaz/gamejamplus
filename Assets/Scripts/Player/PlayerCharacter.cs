@@ -10,6 +10,8 @@ public class PlayerCharacter : MonoBehaviour {
 
 	private PlayerAnimatorController animController;
 	private MatchManager matchManager;
+	private AudioSource audioSource;
+
 	private Rail currentRail;
 	private int currentRailIndex;
 	private Waypoint nextWaypoint;
@@ -22,6 +24,7 @@ public class PlayerCharacter : MonoBehaviour {
 		this.currentRailIndex = rails.Count - 1;
 		this.currentRail = rails[currentRailIndex];
 		this.animController = GetComponent<PlayerAnimatorController>();
+		this.audioSource = GetComponent<AudioSource>();
 	}
 
 	void Start() {
@@ -63,6 +66,7 @@ public class PlayerCharacter : MonoBehaviour {
 		currentRailIndex = idx;
 		NextWaypoint(true);
 		animController.Jump();
+		audioSource.Play();
 	}
 
 	void NextWaypoint(bool changingRail = false) {
