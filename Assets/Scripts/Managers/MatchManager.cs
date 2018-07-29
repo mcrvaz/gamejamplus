@@ -13,6 +13,10 @@ public class MatchManager : MonoBehaviour {
 		this.scoreboardManager = FindObjectOfType<ScoreboardManager>();
 	}
 
+	void Start() {
+		InputManager.disableInput = false;
+	}
+
 	public void EndMatch() {
 		InputManager.disableInput = true;
 		if (WonGame()) {

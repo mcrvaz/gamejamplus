@@ -10,6 +10,7 @@ public class ScoreboardManager : MonoBehaviour {
 	public Text defeatText;
 	public Text scoreText;
 	public Button continueButton;
+	public Button menuButton;
 
 	public void WonGame(int score, int total) {
 		victoryText.gameObject.SetActive(true);
@@ -29,6 +30,7 @@ public class ScoreboardManager : MonoBehaviour {
 		scoreText.gameObject.SetActive(true);
 		scoreText.text = GetScoreText(score, total);
 		continueButton.gameObject.SetActive(true);
+		menuButton.gameObject.SetActive(true);
 	}
 
 	string GetScoreText(int score, int total) {
