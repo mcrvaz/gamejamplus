@@ -33,8 +33,10 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void Move() {
-		if (transform.position == nextWaypoint.transform.position)
+		if (transform.position == nextWaypoint.transform.position) {
+			if (nextWaypoint.isLastEndpoint) EndMatch();
 			NextWaypoint();
+		}
 		MoveToWaypoint();
 	}
 
