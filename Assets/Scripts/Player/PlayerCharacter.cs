@@ -16,9 +16,7 @@ public class PlayerCharacter : MonoBehaviour {
 	private PlayerAnimatorController animController;
 
 	void Awake() {
-		var startingRail = this.startingRail.GetComponent<Rail>();
 		this.rails = new List<Rail>(GameObject.FindObjectsOfType<Rail>());
-		// this.currentRailIndex = rails.FindIndex(e => startingRail);
 		this.currentRailIndex = 1;
 		this.currentRail = rails[currentRailIndex];
 		this.animController = GetComponent<PlayerAnimatorController>();
