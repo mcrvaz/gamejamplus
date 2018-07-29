@@ -11,7 +11,7 @@ public class PlayerCharacter : MonoBehaviour {
 	private List<Rail> rails;
 	private Rail currentRail;
 	private int currentRailIndex;
-	private GameObject nextWaypoint;
+	private Waypoint nextWaypoint;
 	private bool isChangingRail;
 	private PlayerAnimatorController animController;
 
