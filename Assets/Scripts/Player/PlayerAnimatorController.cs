@@ -10,7 +10,6 @@ public class PlayerAnimatorController : MonoBehaviour {
 	void Awake() {
 		animator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		Move();
 	}
 
 	public void Stop() {
@@ -31,6 +30,10 @@ public class PlayerAnimatorController : MonoBehaviour {
 
 	public void Defeat() {
 		animator.SetTrigger("Defeat");
+	}
+
+	public void Born() {
+		animator.SetTrigger("Born");
 	}
 
 	public void Jump() {

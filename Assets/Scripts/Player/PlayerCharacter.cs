@@ -25,17 +25,33 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void Start() {
+		StartCoroutine(IntroAnimation());
 		NextWaypoint();
 	}
 
 	void Update () {
-		if (InputManager.isClicking() || InputManager.isTouching()) ChangeRail();
+		if (InputManager.isClicking() || InputManager.isTouching()) {
+			ChangeRail();
+		}
 		if (!stopMoving) Move();
+	}
+
+	IEnumerator IntroAnimation() {
+		stopMoving = true;
+		InputManager.disableInput = true;
+		animController.Born();
+		yield return new WaitForSeconds(1.5f);
+		InputManager.disableInput = false;
+		stopMoving = false;
+		animController.Move();
 	}
 
 	void Move() {
 		if (transform.position == nextWaypoint.transform.position) {
-			if (nextWaypoint.isLastEndpoint) EndMatch();
+			if (nextWaypoint.isLastEndpoint) {
+				matchManager.ReachEndWaypoint();
+				EndMatch();
+			}
 			NextWaypoint();
 		}
 		MoveToWaypoint();

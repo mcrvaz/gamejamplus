@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114700240523889926}
   - component: {fileID: 95489914852737908}
   - component: {fileID: 114786675676963604}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MovingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -135,7 +135,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1677975901
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: bdcda23132901449f8c00fc2b59b2de6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1

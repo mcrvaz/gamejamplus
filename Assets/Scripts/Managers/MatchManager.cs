@@ -6,18 +6,23 @@ public class MatchManager : MonoBehaviour {
 
 	private int qttVirus;
 	private int score = 0;
+	private bool reachedEndWaypoint;
+
 	private ScoreboardManager scoreboardManager;
+	private Camera mainCamera;
+	private PlayerCharacter player;
 
 	void Awake() {
 		this.qttVirus = FindObjectsOfType<Enemy>().Length;
 		this.scoreboardManager = FindObjectOfType<ScoreboardManager>();
-	}
-
-	void Start() {
+		this.mainCamera = FindObjectOfType<Camera>();
+		this.player = FindObjectOfType<PlayerCharacter>();
 		InputManager.disableInput = false;
 	}
 
 	public void EndMatch() {
+		StartCoroutine(CameraUtils.CameraZoom(mainCamera, 20));
+		StartCoroutine(CameraUtils.FocusOnObject(mainCamera, player.gameObject));
 		InputManager.disableInput = true;
 		if (WonGame()) {
 			scoreboardManager.WonGame(score, qttVirus);
@@ -26,12 +31,17 @@ public class MatchManager : MonoBehaviour {
 		}
 	}
 
+	public void ReachEndWaypoint() {
+		reachedEndWaypoint = true;
+		EndMatch();
+	}
+
 	public void ScorePoint() {
 		score++;
 	}
 
 	public bool WonGame() {
-		return score > (qttVirus / 2);
+		return reachedEndWaypoint && (score > (qttVirus / 2));
 	}
 
 }
