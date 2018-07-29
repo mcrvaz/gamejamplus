@@ -18,7 +18,7 @@ public class MovingObstacle : MonoBehaviour
 		{
 			isExtending = !isExtending;
 			target.y = transform.position.y + (isExtending ? -2 : 2);
-			Debug.Log("Moving to target (x:" + target.x + " y:" + target.y + ") at speed " + speed + ";");
+			// Debug.Log("Moving to target (x:" + target.x + " y:" + target.y + ") at speed " + speed + ";");
 		}
 		transform.position = Vector2.MoveTowards(
 			transform.position,

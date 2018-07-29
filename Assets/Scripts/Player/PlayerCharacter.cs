@@ -80,8 +80,13 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.CompareTag(Tags.ENEMY)) matchManager.ScorePoint();
-		else if (collider.CompareTag(Tags.OBSTACLE)) animController.Collision();
+		if (collider != null)
+		{
+			if (collider.CompareTag(Tags.ENEMY))
+				matchManager.ScorePoint();
+			else if (collider.CompareTag(Tags.OBSTACLE))
+				animController.Collision();
+		}
 	}
 
 	void EndMatch() {
@@ -93,5 +98,4 @@ public class PlayerCharacter : MonoBehaviour {
 			animController.Defeat();
 		}
 	}
-
 }
