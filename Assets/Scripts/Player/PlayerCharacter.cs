@@ -17,6 +17,7 @@ public class PlayerCharacter : MonoBehaviour {
 	private bool stopMoving;
 
 	void Awake() {
+		this.currentRailIndex = 0;
 		this.matchManager = FindObjectOfType<MatchManager>();
 		this.currentRailIndex = rails.Count - 1;
 		this.currentRail = rails[currentRailIndex];
