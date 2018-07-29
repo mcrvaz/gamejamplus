@@ -11353,6 +11353,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114238434216448608, guid: 31a725b40ef294e879600281b945b9c6,
+        type: 2}
+      propertyPath: m_Text
+      value: "Parabens! Ao previnir Coqueluche de se espalhar voce salvou muitas vidas.\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114663948633701232, guid: 31a725b40ef294e879600281b945b9c6,
+        type: 2}
+      propertyPath: m_Text
+      value: Foi por pouco! Tente novamente para prevenir o Coqueluche.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31a725b40ef294e879600281b945b9c6, type: 2}
   m_IsPrefabAsset: 0
