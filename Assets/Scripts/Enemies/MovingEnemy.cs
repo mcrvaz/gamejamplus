@@ -10,7 +10,8 @@ public class MovingEnemy : Enemy {
 	private Waypoint destination;
 	private IEnumerator<Waypoint> waypointEnumerator;
 
-	void Awake() {
+	new void Awake() {
+		base.Awake();
 		waypointEnumerator = waypoints.GetEnumerator();
 		ResetEnumerator(waypointEnumerator);
 	}
@@ -20,8 +21,7 @@ public class MovingEnemy : Enemy {
 	}
 
 	void Update () {
-		if (ReachedDestination())
-			ChangeDestination();
+		if (ReachedDestination()) ChangeDestination();
 		Move();
 	}
 

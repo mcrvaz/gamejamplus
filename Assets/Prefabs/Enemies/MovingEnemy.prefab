@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 58601584488366962}
   - component: {fileID: 114700240523889926}
   - component: {fileID: 95489914852737908}
+  - component: {fileID: 114786675676963604}
   m_Layer: 0
   m_Name: MovingEnemy
   m_TagString: Enemy
@@ -89,6 +90,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   waypoints: []
+--- !u!114 &114786675676963604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1284097227541058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be0e41fedbc841e2a1cc7f869ba59f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212241610817971978
 SpriteRenderer:
   m_ObjectHideFlags: 1
