@@ -15,10 +15,10 @@ TagManager:
   - UI
   - 
   - 
-  - ObstacleLayer
-  - 
-  - 
-  - 
+  - Obstacles
+  - Player
+  - Enemies
+  - Waypoints
   - 
   - 
   - 

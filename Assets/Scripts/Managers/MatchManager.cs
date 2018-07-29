@@ -11,9 +11,6 @@ public class MatchManager : MonoBehaviour {
 	void Awake() {
 		this.qttVirus = FindObjectsOfType<Enemy>().Length;
 		this.scoreboardManager = FindObjectOfType<ScoreboardManager>();
-	}
-
-	void Start() {
 		InputManager.disableInput = false;
 	}
 

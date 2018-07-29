@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4398281878464402}
   - component: {fileID: 212443501631480682}
   - component: {fileID: 114085433141258394}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f5d08e82063449795e12f8a1bf67be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLastEndpoint: 0
 --- !u!212 &212443501631480682
 SpriteRenderer:
   m_ObjectHideFlags: 1

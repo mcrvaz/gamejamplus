@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class InputManager {
+public static class InputManager {
 
 	public static bool disableInput = false;
 
