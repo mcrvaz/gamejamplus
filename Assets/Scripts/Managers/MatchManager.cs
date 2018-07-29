@@ -6,13 +6,20 @@ public class MatchManager : MonoBehaviour {
 
 	private int qttVirus;
 	private int score = 0;
+	private ScoreboardManager scoreboardManager;
 
 	void Awake() {
-		this.qttVirus = GameObject.FindObjectsOfType<Enemy>().Length;
+		this.qttVirus = FindObjectsOfType<Enemy>().Length;
+		this.scoreboardManager = FindObjectOfType<ScoreboardManager>();
 	}
 
 	public void EndMatch() {
 		InputManager.disableInput = true;
+		if (WonGame()) {
+			scoreboardManager.WonGame(score, qttVirus);
+		} else {
+			scoreboardManager.LostGame(score, qttVirus);
+		}
 	}
 
 	public void ScorePoint() {

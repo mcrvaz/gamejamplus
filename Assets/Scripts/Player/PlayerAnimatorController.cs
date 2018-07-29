@@ -21,6 +21,18 @@ public class PlayerAnimatorController : MonoBehaviour {
 		animator.SetBool("isMoving", true);
 	}
 
+	public void Collision() {
+		animator.SetTrigger("Collision");
+	}
+
+	public void Victory() {
+		animator.SetTrigger("Victory");
+	}
+
+	public void Defeat() {
+		animator.SetTrigger("Defeat");
+	}
+
 	public void Jump() {
 		animator.SetTrigger("Jump");
 		FlipSprite();

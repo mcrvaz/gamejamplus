@@ -6,16 +6,20 @@ public class PlayerCharacter : MonoBehaviour {
 
 	[Range(0, 20)]
 	public float speed;
-
 	public List<Rail> rails;
+
+	private PlayerAnimatorController animController;
+	private MatchManager matchManager;
 	private Rail currentRail;
 	private int currentRailIndex;
 	private Waypoint nextWaypoint;
 	private bool isChangingRail;
-	private PlayerAnimatorController animController;
+	private bool stopMoving;
 
 	void Awake() {
 		this.currentRailIndex = 0;
+		this.matchManager = FindObjectOfType<MatchManager>();
+		this.currentRailIndex = rails.Count - 1;
 		this.currentRail = rails[currentRailIndex];
 		this.animController = GetComponent<PlayerAnimatorController>();
 	}
@@ -25,14 +29,15 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
-			ChangeRail();
-		Move();
+		if (InputManager.isClicking() || InputManager.isTouching()) ChangeRail();
+		if (!stopMoving) Move();
 	}
 
 	void Move() {
-		if (transform.position == nextWaypoint.transform.position)
+		if (transform.position == nextWaypoint.transform.position) {
+			if (nextWaypoint.isLastEndpoint) EndMatch();
 			NextWaypoint();
+		}
 		MoveToWaypoint();
 	}
 
@@ -70,7 +75,23 @@ public class PlayerCharacter : MonoBehaviour {
 			Mathf.Abs(transform.position.y),
 			Mathf.Abs(nextWaypoint.transform.position.y)
 		);
+		animController.SetJumping(!isTouching);
 		return isTouching;
+	}
+
+	void OnTriggerEnter2D(Collider2D collider) {
+		if (collider.CompareTag(Tags.ENEMY)) matchManager.ScorePoint();
+		else if (collider.CompareTag(Tags.OBSTACLE)) animController.Collision();
+	}
+
+	void EndMatch() {
+		matchManager.EndMatch();
+		stopMoving = true;
+		if (matchManager.WonGame()) {
+			animController.Victory();
+		} else {
+			animController.Defeat();
+		}
 	}
 
 }
