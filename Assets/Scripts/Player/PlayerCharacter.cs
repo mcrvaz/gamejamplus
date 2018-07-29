@@ -16,11 +16,10 @@ public class PlayerCharacter : MonoBehaviour {
 	private int currentRailIndex;
 	private Waypoint nextWaypoint;
 	private bool isChangingRail;
+	private bool stopMoving;
 
 	void Awake() {
-		var startingRail = this.startingRail.GetComponent<Rail>();
 		this.rails = new List<Rail>(FindObjectsOfType<Rail>());
-		// this.currentRailIndex = rails.FindIndex(e => startingRail);
 		this.currentRailIndex = 1;
 		this.currentRail = rails[currentRailIndex];
 		this.matchManager = FindObjectOfType<MatchManager>();
@@ -33,7 +32,7 @@ public class PlayerCharacter : MonoBehaviour {
 
 	void Update () {
 		if (InputManager.isClicking() || InputManager.isTouching()) ChangeRail();
-		Move();
+		if (!stopMoving) Move();
 	}
 
 	void Move() {
@@ -81,11 +80,17 @@ public class PlayerCharacter : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.CompareTag(Tags.ENEMY)) matchManager.ScorePoint();
+		else if (collider.CompareTag(Tags.OBSTACLE)) animController.Collision();
 	}
 
 	void EndMatch() {
 		matchManager.EndMatch();
-		animController.Stop();
+		stopMoving = true;
+		if (matchManager.WonGame()) {
+			animController.Victory();
+		} else {
+			animController.Defeat();
+		}
 	}
 
 }
