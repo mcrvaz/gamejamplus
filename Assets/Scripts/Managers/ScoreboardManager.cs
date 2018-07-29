@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class ScoreboardManager : MonoBehaviour {
 
-	public Text victoryText;
-	public Text defeatText;
 	public Image victoryImage;
 	public Image defeatImage;
 	public Text scoreText;
@@ -18,14 +16,12 @@ public class ScoreboardManager : MonoBehaviour {
 		victoryImage.gameObject.SetActive(true);
 		defeatImage.gameObject.SetActive(false);
 		EndGame(score, total);
-		scoreText.color = victoryText.color;
 	}
 
 	public void LostGame(int score, int total) {
 		victoryImage.gameObject.SetActive(false);
 		defeatImage.gameObject.SetActive(true);
 		EndGame(score, total);
-		scoreText.color = defeatText.color;
 	}
 
 	void EndGame(int score, int total) {
