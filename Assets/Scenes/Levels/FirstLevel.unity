@@ -4953,6 +4953,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114353683206966520, guid: 8bd6dce80d7894b7daa349814449ebc5,
+        type: 2}
+      propertyPath: rails.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4775663600686676, guid: 8bd6dce80d7894b7daa349814449ebc5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5006,6 +5011,16 @@ Prefab:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114353683206966520, guid: 8bd6dce80d7894b7daa349814449ebc5,
+        type: 2}
+      propertyPath: rails.Array.data[0]
+      value: 
+      objectReference: {fileID: 913014359}
+    - target: {fileID: 114353683206966520, guid: 8bd6dce80d7894b7daa349814449ebc5,
+        type: 2}
+      propertyPath: rails.Array.data[1]
+      value: 
+      objectReference: {fileID: 1133074604}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd6dce80d7894b7daa349814449ebc5, type: 2}
   m_IsPrefabAsset: 0
@@ -10603,6 +10618,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 913014352}
   m_Script: {fileID: 11500000, guid: 76f5d08e82063449795e12f8a1bf67be, type: 3}
+--- !u!114 &913014359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114245853596038630, guid: feb69d24b03964332b3f64c904a79737,
+    type: 2}
+  m_PrefabInternal: {fileID: 913014352}
+  m_Script: {fileID: 11500000, guid: 8ef8e744a3d3a4a5a9e4003bae2fc159, type: 3}
 --- !u!1 &914516365
 GameObject:
   m_ObjectHideFlags: 0
@@ -12310,6 +12331,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1133074604 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114088310263869332, guid: c87a52eb08ea5427f87d40b399a2a635,
+    type: 2}
+  m_PrefabInternal: {fileID: 1841973836}
+  m_Script: {fileID: 11500000, guid: 8ef8e744a3d3a4a5a9e4003bae2fc159, type: 3}
 --- !u!1001 &1146220498
 Prefab:
   m_ObjectHideFlags: 0

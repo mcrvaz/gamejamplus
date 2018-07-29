@@ -6,9 +6,8 @@ public class PlayerCharacter : MonoBehaviour {
 
 	[Range(0, 20)]
 	public float speed;
-	public GameObject startingRail;
 
-	private List<Rail> rails;
+	public List<Rail> rails;
 	private Rail currentRail;
 	private int currentRailIndex;
 	private Waypoint nextWaypoint;
@@ -16,7 +15,6 @@ public class PlayerCharacter : MonoBehaviour {
 	private PlayerAnimatorController animController;
 
 	void Awake() {
-		this.rails = new List<Rail>(GameObject.FindObjectsOfType<Rail>());
 		this.currentRailIndex = 0;
 		this.currentRail = rails[currentRailIndex];
 		this.animController = GetComponent<PlayerAnimatorController>();
