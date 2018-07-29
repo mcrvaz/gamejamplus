@@ -8,9 +8,8 @@ public class PlayerCharacter : MonoBehaviour {
 	public float speed;
 	public GameObject startingRail;
 
-	private MatchManager matchManager;
 	private PlayerAnimatorController animController;
-
+	private MatchManager matchManager;
 	private List<Rail> rails;
 	private Rail currentRail;
 	private int currentRailIndex;
@@ -19,10 +18,10 @@ public class PlayerCharacter : MonoBehaviour {
 	private bool stopMoving;
 
 	void Awake() {
+		this.matchManager = FindObjectOfType<MatchManager>();
 		this.rails = new List<Rail>(FindObjectsOfType<Rail>());
 		this.currentRailIndex = 1;
 		this.currentRail = rails[currentRailIndex];
-		this.matchManager = FindObjectOfType<MatchManager>();
 		this.animController = GetComponent<PlayerAnimatorController>();
 	}
 
@@ -36,10 +35,8 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void Move() {
-		if (transform.position == nextWaypoint.transform.position) {
-			if (nextWaypoint.isLastEndpoint) EndMatch();
+		if (transform.position == nextWaypoint.transform.position)
 			NextWaypoint();
-		}
 		MoveToWaypoint();
 	}
 
@@ -52,10 +49,13 @@ public class PlayerCharacter : MonoBehaviour {
 	}
 
 	void NextWaypoint(bool changingRail = false) {
-		if (changingRail) {
+		if (changingRail)
+		{
 			nextWaypoint = currentRail.GetNearestWaypoint(transform.position);
 			nextWaypoint = currentRail.GetNextWaypoint();
-		} else {
+		}
+		else
+		{
 			nextWaypoint = currentRail.GetNextWaypoint();
 		}
 	}
@@ -74,7 +74,6 @@ public class PlayerCharacter : MonoBehaviour {
 			Mathf.Abs(transform.position.y),
 			Mathf.Abs(nextWaypoint.transform.position.y)
 		);
-		animController.SetJumping(!isTouching);
 		return isTouching;
 	}
 
