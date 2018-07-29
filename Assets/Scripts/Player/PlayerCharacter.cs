@@ -48,7 +48,10 @@ public class PlayerCharacter : MonoBehaviour {
 
 	void Move() {
 		if (transform.position == nextWaypoint.transform.position) {
-			if (nextWaypoint.isLastEndpoint) EndMatch();
+			if (nextWaypoint.isLastEndpoint) {
+				matchManager.ReachEndWaypoint();
+				EndMatch();
+			}
 			NextWaypoint();
 		}
 		MoveToWaypoint();
